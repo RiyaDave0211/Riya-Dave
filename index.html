@@ -15,10 +15,11 @@
 <style>
 :root{
   --ink:#10181f; --ink-soft:#4d5763; --paper:#f5f3ee; --paper-dim:#ece8df;
-  --amber:#cc8b3c; --teal:#2f6f6a; --rose:#b85c64; --line:#d9d4c7;
+  --amber:#cc8b3c; --teal:#2f6f6a; --rose:#b85c64; --line:#d9d4c7; --nav-bg:rgba(245,243,238,.86); --card:#fff; color-scheme:light;
   box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ } }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --ink:#e9ece8; --ink-soft:#a3adb5; --paper:#0e151c; --paper-dim:#141d26; --amber:#e0a04e; --teal:#5fb3ab; --rose:#d9818a; --line:#263341; --nav-bg:rgba(14,21,28,.86); --card:#131c25; color-scheme:dark; } }
+:root[data-theme="dark"]{ --ink:#e9ece8; --ink-soft:#a3adb5; --paper:#0e151c; --paper-dim:#141d26; --amber:#e0a04e; --teal:#5fb3ab; --rose:#d9818a; --line:#263341; --nav-bg:rgba(14,21,28,.86); --card:#131c25; color-scheme:dark; }
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px);}
 body{margin:0; background:var(--paper); color:var(--ink); font-family:'IBM Plex Sans',sans-serif; line-height:1.5; overflow-x:hidden;}
@@ -29,7 +30,7 @@ img{max-width:100%; display:block;}
 a{color:inherit;}
 
 /* nav */
-nav{position:sticky; top:0; z-index:20; background:rgba(245,243,238,.86); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+nav{position:sticky; top:0; z-index:20; background:var(--nav-bg); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
 nav .wrap{display:flex; justify-content:space-between; align-items:center; height:64px;}
 nav .brand{font-family:'Fraunces',serif; font-size:1.15rem;}
 nav .links{display:flex; gap:26px; font-size:.92rem; color:var(--ink-soft);}
@@ -38,21 +39,21 @@ nav .links a:hover{color:var(--teal);}
 @media(max-width:640px){nav .links{gap:14px; font-size:.82rem;}}
 
 /* hero */
-.hero{background:var(--ink); color:var(--paper); padding:100px 0 70px; position:relative;}
+.hero{background:#10181f; color:#f5f3ee; padding:100px 0 70px; position:relative;}
 .hero .wrap{display:flex; align-items:center; justify-content:space-between; gap:48px;}
 .hero .hero-text{flex:1; min-width:0;}
 .hero-photo{flex-shrink:0; width:320px; height:320px; border-radius:50%; overflow:hidden; border:1px solid #3a4450; box-shadow:0 20px 50px rgba(0,0,0,.35); opacity:0; animation:rise .7s ease forwards; animation-delay:.3s;}
 .hero-photo img{width:100%; height:100%; object-fit:cover; display:block;}
-@media(max-width:760px){.hero .wrap{flex-direction:column-reverse; text-align:center;} .hero-photo{width:220px; height:220px;} .hero .cta-row{justify-content:center;}}
+@media(max-width:760px){.hero .wrap{flex-direction:column-reverse; text-align:center; align-items:center;} .hero .hero-text{width:100%; flex:none;} .hero h1{margin-left:auto; margin-right:auto; max-width:13ch;} .hero p.tag{margin-left:auto; margin-right:auto;} .hero-photo{width:220px; height:220px;} .hero .cta-row{justify-content:center;}}
 .hero .eyebrow{color:var(--amber); font-size:.9rem; letter-spacing:.02em; margin-bottom:18px;}
 .hero h1{font-size:clamp(2.6rem,7vw,4.6rem); line-height:1.02; max-width:11ch;}
 .hero p.tag{max-width:44ch; color:#c9d1d6; font-size:1.15rem; margin-top:22px;}
 .hero .loc{margin-top:8px; color:#8d98a1; font-size:.9rem;}
 .cta-row{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
 .btn{display:inline-block; padding:13px 24px; border-radius:2px; text-decoration:none; font-size:.95rem; font-weight:500; transition:transform .15s ease, background .15s ease;}
-.btn-amber{background:var(--amber); color:var(--ink);}
+.btn-amber{background:var(--amber); color:#10181f;}
 .btn-amber:hover{transform:translateY(-2px);}
-.btn-ghost{border:1px solid #4a5560; color:var(--paper);}
+.btn-ghost{border:1px solid #4a5560; color:#f5f3ee;}
 .btn-ghost:hover{border-color:var(--amber); color:var(--amber);}
 
 /* kpi strip */
@@ -79,7 +80,7 @@ section{padding:78px 0;}
 @media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
 
 /* projects */
-.project{border:1px solid var(--line); background:#fff; margin-bottom:26px; overflow:hidden; transition:transform .2s ease, box-shadow .2s ease;}
+.project{border:1px solid var(--line); background:var(--card); margin-bottom:26px; overflow:hidden; transition:transform .2s ease, box-shadow .2s ease;}
 .project:hover{transform:translateY(-3px); box-shadow:0 14px 30px rgba(16,24,31,.08);}
 .project .p-body{padding:28px 30px;}
 .project .p-tag{color:var(--rose); font-family:'IBM Plex Mono',monospace; font-size:.78rem; margin-bottom:8px;}
@@ -121,8 +122,8 @@ section{padding:78px 0;}
 @media(max-width:600px){.tl-item::before{display:none;} .tl{margin-left:0;}}
 
 /* footer */
-footer{background:var(--ink); color:var(--paper); padding:64px 0 40px;}
-footer h2{font-size:2.1rem; max-width:14ch; color:var(--paper);}
+footer{background:#10181f; color:#f5f3ee; padding:64px 0 40px;}
+footer h2{font-size:2.1rem; max-width:14ch; color:#f5f3ee;}
 footer .contact-row{display:flex; gap:26px; flex-wrap:wrap; margin-top:26px; font-size:.95rem;}
 footer .contact-row a{text-decoration:none; color:#c9d1d6; border-bottom:1px solid #4a5560;}
 footer .fine{margin-top:46px; color:#6b7681; font-size:.8rem;}
@@ -134,15 +135,44 @@ footer .fine{margin-top:46px; color:#6b7681; font-size:.8rem;}
 .hero .eyebrow,.hero h1,.hero p.tag,.hero .loc,.hero .cta-row{opacity:0; animation:rise .7s ease forwards;}
 .hero h1{animation-delay:.08s;} .hero p.tag{animation-delay:.22s;} .hero .loc{animation-delay:.3s;} .hero .cta-row{animation-delay:.38s;}
 @keyframes rise{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+
+.theme-toggle{background:none; border:1px solid var(--line); color:var(--ink-soft); width:34px; height:34px; border-radius:50%; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; padding:0; transition:transform .3s ease, color .2s ease, border-color .2s ease;}
+.theme-toggle:hover{color:var(--amber); border-color:var(--amber); transform:rotate(20deg);}
+.theme-toggle .sun{display:none;}
+:root[data-theme="dark"] .theme-toggle .sun{display:block;}
+:root[data-theme="dark"] .theme-toggle .moon{display:none;}
+nav .links{align-items:center;}
+body,nav,.kpi,.chip{transition:background-color .35s ease,color .35s ease,border-color .35s ease;}
+.project{transition:transform .2s ease, box-shadow .2s ease, background-color .35s ease, border-color .35s ease;}
+.progress{position:fixed; top:0; left:0; height:3px; width:0; background:var(--amber); z-index:60; transition:width .1s linear;}
+.hero::before{content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(204,139,60,.22) 1.2px, transparent 1.2px); background-size:30px 30px; -webkit-mask-image:linear-gradient(to bottom,#000 0%,transparent 85%); mask-image:linear-gradient(to bottom,#000 0%,transparent 85%); animation:drift 22s linear infinite; pointer-events:none;}
+.hero .wrap{position:relative; z-index:1;}
+@keyframes drift{to{background-position:30px 30px;}}
+.typed-line{font-family:'IBM Plex Mono',monospace; font-size:.95rem; color:var(--amber); margin-top:18px; min-height:1.5em; opacity:0; animation:rise .7s ease .3s forwards;}
+.typed-line .pre{color:#8d98a1; margin-right:8px;}
+.caret{display:inline-block; width:2px; height:1.1em; background:var(--amber); margin-left:3px; vertical-align:-.15em; animation:blink 1s steps(1) infinite;}
+@keyframes blink{50%{opacity:0;}}
+.hero-photo{animation:rise .7s ease .3s forwards, floaty 6s ease-in-out 1.2s infinite, ringPulse 3.2s ease-out 1.2s infinite;}
+@keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+@keyframes ringPulse{0%{box-shadow:0 0 0 0 rgba(204,139,60,.45),0 20px 50px rgba(0,0,0,.35);}70%{box-shadow:0 0 0 20px rgba(204,139,60,0),0 20px 50px rgba(0,0,0,.35);}100%{box-shadow:0 0 0 0 rgba(204,139,60,0),0 20px 50px rgba(0,0,0,.35);}}
+.reveal.in .chip{animation:pop .45s cubic-bezier(.2,.8,.2,1) backwards;}
+@keyframes pop{from{opacity:0; transform:scale(.85);}to{opacity:1; transform:none;}}
+@media (prefers-reduced-motion: reduce){
+  .hero .eyebrow,.hero h1,.hero p.tag,.hero .loc,.hero .cta-row,.hero-photo,.typed-line{opacity:1 !important; animation:none !important; transform:none !important;}
+  .hero::before,.caret,.reveal.in .chip{animation:none !important;}
+}
 </style>
+<script>(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}if(!t){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t)})();</script>
 </head>
 <body>
+<div class="progress" id="progress"></div>
 
 <nav>
   <div class="wrap">
     <div class="brand">Riya Dave</div>
     <div class="links">
       <a href="#work">Work</a><a href="#about">About</a><a href="#path">Path</a><a href="#contact">Contact</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark mode" onclick="toggleTheme()"><svg class="moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
     </div>
   </div>
 </nav>
@@ -151,8 +181,9 @@ footer .fine{margin-top:46px; color:#6b7681; font-size:.8rem;}
   <div class="wrap">
     <div class="hero-text">
       <div class="eyebrow">Data Analyst · Power BI &amp; Tableau Developer · Generative AI</div>
-      <h1>I turn raw rows into decisions worth acting on.</h1>
+      <h1>I turn data and AI into decisions worth acting on.</h1>
       <p class="tag">Information Technology student building Power BI and Tableau dashboards, plus Generative AI tools that turn raw data and documents into insights people can trust and act on.</p>
+      <div class="typed-line"><span class="pre">Focus:</span><span id="typed"></span><span class="caret"></span></div>
       <div class="loc">Ahmedabad, Gujarat, India</div>
       <div class="cta-row">
         <a class="btn btn-amber" id="dl-resume" href="#" download="Riya_Dave_Resume.pdf">Download Résumé</a>
@@ -411,6 +442,11 @@ function closeCert(){
 }
 document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeCert(); });
 
+function toggleTheme(){var r=document.documentElement;var t=r.getAttribute('data-theme')==='dark'?'light':'dark';r.setAttribute('data-theme',t);try{localStorage.setItem('theme',t)}catch(e){}}
+(function(){var p=document.getElementById('progress');function u(){var h=document.documentElement.scrollHeight-innerHeight;p.style.width=(h>0?scrollY/h*100:0)+'%';}addEventListener('scroll',u,{passive:true});u();})();
+(function(){var el=document.getElementById('typed');if(!el)return;var words=['Power BI dashboards','Tableau stories','Generative AI tools','Data-driven decisions'];if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=words[0];return;}var w=0,c=0,del=false;function tick(){var s=words[w];c+=del?-1:1;el.textContent=s.slice(0,c);var d=del?35:70;if(!del&&c===s.length){del=true;d=1400;}else if(del&&c===0){del=false;w=(w+1)%words.length;d=300;}setTimeout(tick,d);}tick();})();
+(function(){var o=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;o.unobserve(e.target);var t=e.target.textContent.trim();var n=parseInt(t.replace(/,/g,''),10);if(isNaN(n)||(n>1900&&n<2100)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var comma=t.indexOf(',')>-1,s=performance.now(),d=1200;(function f(now){var k=Math.min((now-s)/d,1),v=Math.round(n*(1-Math.pow(1-k,3)));e.target.textContent=comma?v.toLocaleString('en-US'):v;if(k<1)requestAnimationFrame(f);})(s);});},{threshold:.6});document.querySelectorAll('.kpi .num').forEach(function(el){o.observe(el);});})();
+document.querySelectorAll('.chip-row').forEach(function(r){[].forEach.call(r.children,function(c,i){c.style.animationDelay=(i*60)+'ms';});});
 function toggleMoreProjects(){
   const panel = document.getElementById('moreProjects');
   const btn = document.getElementById('moreBtn');
